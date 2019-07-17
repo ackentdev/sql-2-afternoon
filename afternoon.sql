@@ -151,5 +151,19 @@ DELETE FROM practice_delete WHERE value = 150;
 
 CREATE TABLE users (user_id SERIAL PRIMARY KEY, name TEXT, email TEXT);
 CREATE TABLE products (product_id SERIAL PRIMARY KEY, name TEXT, price INTEGER);
-CREATE TABLE orders (order_id SERIAL PRIMARY KEY, prouduct_id INTEGER);
+CREATE TABLE orders (order_id SERIAL PRIMARY KEY, prouduct_id INTEGER REFERENCES products(product_id));
+
+-- 7.2
+INSERT INTO users (name, email)
+VALUES ('Smitty', 'mitty@chumbucket.com'), ('Werber', 'jaeger@chumbucket.com'), ('Man', 'jensen@chumbucket.com');
+INSERT INTO products (name, price)
+VALUES ('#1 hat', 3.00), ('drink hat', 2.00), ('sailor hat', 1.00);
+INSERT INTO orders (product_id)
+VALUES (4), (4), (4);
+
+-- 7.3
+SELECT * FROM products
+WHERE product_id IN (SELECT product_id FROM orders WHERE order_id = 1);
+
+SELECT * FROM orders;
 
