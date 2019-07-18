@@ -167,3 +167,4 @@ WHERE product_id IN (SELECT product_id FROM orders WHERE order_id = 1);
 
 SELECT * FROM orders;
 
+SELECT SUM()
